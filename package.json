@@ -1,6 +1,7 @@
 {
   "name": "rewriter",
   "displayName": "rewriter",
+  "publisher": "dtinth",
   "description": "",
   "version": "0.0.1",
   "engines": {

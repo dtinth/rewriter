@@ -1,71 +1,48 @@
-# fresh-extension README
+# Rewriter
 
-This is the README for your extension "fresh-extension". After writing up a brief description, we recommend including the following sections.
+With the help of Gemini Pro, a Google AI language model, this extension helps you rewrite prose and improve grammar and readability. Additionally, you can customize the prompt to perform other tasks, such as translating text to different languages.
 
-## Features
+![Preview](preview.png)
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+This extension hasn't been published to the VS Code Marketplace yet. To use it, clone this repository and install it manually.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+[You need an API key from Google AI Studio.](https://makersuite.google.com/app/prompts/new_freeform)
 
-## Extension Settings
+## Configuration
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Run the command **Rewriter: Set API key**, and enter your API key.
 
-For example:
+## Usage
 
-This extension contributes the following settings:
+### With default prompt
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+To use the default prompt, select the text you want to rewrite and run the command **Rewriter: Rewrite Selected Text**.
 
-## Known Issues
+### With customized prompt
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+To use a customized prompt, modify VS Code’s `keybindings.json` to create a keyboard shortcut for it.
 
-## Release Notes
+For instance, this keybinding assists me in translating text into Thai while also enhancing the text's readability if it’s already in Thai:
 
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+```json
+{
+  "key": "cmd+k cmd+t",
+  "command": "rewriter.rewrite",
+  "args": {
+    "debug": true,
+    "prompt": "ช่วยทำให้ข้อความอ่านง่ายขึ้น และแก้คำผิดให้หน่อย หรือถ้าข้อความต้นฉบับมาเป็นภาษาอังกฤษ ให้แปลเป็นภาษาไทย",
+    "examples": [
+      {
+        "input": "ไม่ว่าคุณจะทำงานสายอาชีพไหน ถ้าคุณเขียนโปรแกรมเป็น ก็เปรียบเสมือนมีเวทมนตร์หรือมีซุปเปอร์พาวเวอร์ติดตัว เพราะว่าคุณจะสามารถสั่งคอมพิวเตอร์ให้ทำในสิ่งที่คุณต้องการได้ ไม่ว่าจะเป็นการสร้างเว็บไซต์ สร้างแอพมือถือ สอนคอมพิวเตอร์ให้ทำงานที่น่าเบื่อจำเจแทนเรา ใช้สร้างชิ้นงานศิลปะ หรือสร้างเกม",
+        "output": "ไม่ว่าคุณจะทำงานอะไร หากคุณเขียนโปรแกรมเป็น ก็เหมือนกับว่าคุณมีเวทมนตร์ หรือมีซุปเปอร์พาวเวอร์ติดตัว เพราะการเขียนโปรแกรมจะช่วยให้คุณสามารถสั่งให้คอมพิวเตอร์ทำในสิ่งที่คุณต้องการได้ เช่น สร้างเว็บไซต์ สร้างแอพมือถือ หรือสอนคอมพิวเตอร์ให้ทำงานที่น่าเบื่อแทนเรา คุณยังสามารถใช้โปรแกรมเพื่อสร้างงานศิลปะหรือสร้างเกมได้อีกด้วย"
+      },
+      {
+        "input": "Oftentimes websites are designed using a desktop-first approach",
+        "output": "ปกติหลายๆ ครั้งเวลาออกแบบหน้าเว็บ เรามักจะเริ่มจากการออกแบบหน้าเว็บสำหรับดูบนจอเดสก์ท็อปก่อน (desktop-first)"
+      }
+    ]
+  }
+}
+```
