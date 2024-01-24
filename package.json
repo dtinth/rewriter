@@ -1,6 +1,6 @@
 {
-  "name": "fresh-extension",
-  "displayName": "fresh-extension",
+  "name": "rewriter",
+  "displayName": "rewriter",
   "description": "",
   "version": "0.0.1",
   "engines": {
@@ -14,8 +14,12 @@
   "contributes": {
     "commands": [
       {
-        "command": "fresh-extension.helloWorld",
-        "title": "Hello World"
+        "command": "rewriter.setApiKey",
+        "title": "Rewriter: Set API key"
+      },
+      {
+        "command": "rewriter.rewrite",
+        "title": "Rewriter: Rewrite selected text"
       }
     ]
   },
