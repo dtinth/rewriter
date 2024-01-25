@@ -2,24 +2,23 @@ name: VSIX
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 20
-        cache: 'npm'
-    - run: npm ci
-    - run: npx vsce package -y
-    - run: npm test
-    - uses: actions/upload-artifact@v4
-      with:
-        name: vsix
-        path: ./*.vsix
-
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: "npm"
+      - run: npm ci
+      - run: npx vsce package
+      - run: npm test
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vsix
+          path: ./*.vsix
