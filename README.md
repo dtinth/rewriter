@@ -22,16 +22,21 @@ To use the default prompt, select the text you want to rewrite and run the comma
 
 ### With customized prompt
 
-To use a customized prompt, modify VS Code’s `keybindings.json` to create a keyboard shortcut for it.
+To use a customized prompt, modify VS Code’s `keybindings.json` to create a keyboard shortcut for it. To configure the `args` object, specify the following properties:
 
-For instance, this keybinding assists me in translating text into Thai while also enhancing the text's readability if it’s already in Thai:
+- `prompt`: The prompt text help guide the model’s behavior.
+- `examples`: An array of objects containing `input` and `output` properties. These examples will guide the model in rewriting the text in the desired style.
+
+> [!TIP]
+> To help the model rewrite text in the way you want, continue adding examples to this configuration.
+
+For instance, this keybinding helps me translate English content into Thai:
 
 ```json
 {
   "key": "cmd+k cmd+t",
   "command": "rewriter.rewrite",
   "args": {
-    "debug": true,
     "prompt": "ช่วยทำให้ข้อความอ่านง่ายขึ้น และแก้คำผิดให้หน่อย หรือถ้าข้อความต้นฉบับมาเป็นภาษาอังกฤษ ให้แปลเป็นภาษาไทย",
     "examples": [
       {
@@ -46,3 +51,7 @@ For instance, this keybinding assists me in translating text into Thai while als
   }
 }
 ```
+
+Translation of the prompt:
+
+> Help make the text easier to read and fix typos, or if the original text is in English, translate it into Thai.
