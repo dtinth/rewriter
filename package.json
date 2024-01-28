@@ -2,8 +2,8 @@
   "name": "rewriter",
   "displayName": "rewriter",
   "publisher": "dtinth",
-  "description": "",
-  "version": "0.0.1",
+  "description": "Use Google's Gemini Pro model to rewrite a passage of text",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.85.0"
   },

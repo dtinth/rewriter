@@ -4,8 +4,6 @@ With the help of Gemini Pro, a Google AI language model, this extension helps yo
 
 ![Preview](preview.png)
 
-This extension hasn't been published to the VS Code Marketplace yet. To use it, clone this repository and install it manually, or grab an automatically-built package from the [Actions tab](https://github.com/dtinth/rewriter/actions/workflows/vsix.yml)
-
 ## Requirements
 
 [You need an API key from Google AI Studio.](https://makersuite.google.com/app/prompts/new_freeform)
