@@ -1,5 +1,19 @@
 import * as vscode from "vscode";
 
+interface Example {
+  input: string;
+  output: string;
+}
+
+type ExampleConfig = Example[] | Record<string, string>;
+
+function toExamples(examples: ExampleConfig): Example[] {
+  if (Array.isArray(examples)) {
+    return examples;
+  }
+  return Object.entries(examples).map(([input, output]) => ({ input, output }));
+}
+
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand("rewriter.setApiKey", async () => {
@@ -46,24 +60,16 @@ export function activate(context: vscode.ExtensionContext) {
           }
 
           const parts: { text: string }[] = [];
+
+          const configuration = vscode.workspace.getConfiguration("rewriter");
+
           parts.push({
-            text:
-              args?.prompt ||
-              "Please rewrite the text to improve its grammar and readability",
+            text: args?.prompt || configuration.get<string>("prompt") || "",
           });
-          const examples: { input: string; output: string }[] =
-            args?.examples || [
-              {
-                input:
-                  "Wildcard can capture the value after segment regardless of amount by using `*`.",
-                output:
-                  "Using `*` as a wildcard allows capturing any value after a segment, irrespective of its length or content.",
-              },
-              {
-                input: "This library is build on top of web standards.",
-                output: "This library is built on top of web standards.",
-              },
-            ];
+
+          const examples: Example[] = toExamples(
+            args?.examples || configuration.get<ExampleConfig>("examples", [])
+          );
           if (Array.isArray(examples)) {
             for (const example of examples) {
               parts.push({ text: `input: ${example?.input}` });

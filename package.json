@@ -3,7 +3,7 @@
   "displayName": "rewriter",
   "publisher": "dtinth",
   "description": "Use Google's Gemini Pro model to rewrite a passage of text",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -22,7 +22,29 @@
         "command": "rewriter.rewrite",
         "title": "Rewriter: Rewrite selected text"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Rewriter",
+      "properties": {
+        "rewriter.prompt": {
+          "type": "string",
+          "default": "Please rewrite the text to improve its grammar and readability",
+          "description": "Tone and style instructions for the model"
+        },
+        "rewriter.examples": {
+          "type": "object",
+          "description": "Input and output examples to guide the model to write the text in the way you want",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": {
+            "Wildcard can capture the value after segment regardless of amount by using `*`.": "Using `*` as a wildcard allows capturing any value after a segment, irrespective of its length or content.",
+            "This library is build on top of web standards.": "This library is built on top of web standards.",
+            "We save our meeting notes in Outline app.": "We store our meeting notes in the Outline app."
+          }
+        }
+      }
+    }
   },
   "repository": {
     "type": "git",
